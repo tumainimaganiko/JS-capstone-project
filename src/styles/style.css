@@ -1,3 +1,46 @@
 body {
-  background-color: antiquewhite;
+  background-color: gray;
+}
+
+header {
+  display: flex;
+  justify-content: space-around;
+}
+
+#logo  {
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 24px;
+}
+
+main {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 100px;
+  
+}
+
+main div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main div img {
+  width: 100px;
+}
+
+.popup {
+  width: 70%;
+  margin: 0 auto;
+  background-color: red;
+}
+
+.popup img {
+  width: 300px;
+}
+
+.popup section {
+  display: flex;
+  justify-content: space-around;
 }
