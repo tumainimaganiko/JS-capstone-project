@@ -36,8 +36,6 @@ main div img {
 }
 
 footer {
-  position: absolute;
-  bottom: 0;
   border: 2px solid black;
   width: 99%;
   padding: 20px;
