@@ -16,12 +16,13 @@ export default class MovieStore {
     retrieveItems(id)
       .then((m) => {
         const { name } = m;
+        const img = m.image.original;
         const { language } = m;
         const { genres } = m;
         const { runtime } = m;
         const rating = m.rating.average;
         const { summary } = m;
-        const movie = new Movie(id, name, language, genres, runtime, rating, summary);
+        const movie = new Movie(id, name, img, language, genres, runtime, rating, summary);
         this.Movies.push(movie);
       });
   }
