@@ -2,31 +2,24 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
   entry: {
-    bundle: path.resolve(__dirname, 'src/index.js'),
+    index: './src/index.js',
+  },
+  mode: 'development',
+  devServer: {
+    static: './dist',
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'JS-capstone-2',
-      filename: 'index.html',
-      template: 'src/index.html',
+      template: './src/index.html',
     }),
   ],
   output: {
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js',
-    clean: true,
   },
-  devServer: {
-    static: {
-      directory: path.resolve(__dirname, 'dist'),
-    },
-    port: 3000,
-    open: true,
-    hot: true,
-    compress: true,
-    historyApiFallback: true,
+  optimization: {
+    runtimeChunk: 'single',
   },
   module: {
     rules: [
@@ -35,8 +28,5 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
     ],
-  },
-  optimization: {
-    runtimeChunk: 'single',
   },
 };
