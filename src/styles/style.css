@@ -14,16 +14,15 @@ header {
   justify-content: space-around;
 }
 
-#logo {
-  border: 1px solid black;
-  padding: 10px;
-  border-radius: 24px;
+header img {
+  width: 100px;
 }
 
 main {
   display: grid;
   grid-template-columns: auto auto auto;
-  gap: 100px;
+  gap: 80px;
+  margin: 10px;
 }
 
 main div {
@@ -37,8 +36,6 @@ main div img {
 }
 
 footer {
-  position: fixed;
-  bottom: 0;
   border: 2px solid black;
   width: 99%;
   padding: 20px;
@@ -47,4 +44,11 @@ footer {
 
 footer p {
   font-weight: 900;
+}
+
+a {
+  padding: 5px 10px;
+  text-decoration: none;
+  border: 3px solid black;
+  margin: 5px;
 }
