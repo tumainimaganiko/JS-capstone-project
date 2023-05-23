@@ -5,10 +5,11 @@
 }
 
 body {
-  background-color: gray;
+  background-color: bisque;
 }
 
 header {
+  margin-top: 20px;
   display: flex;
   justify-content: space-around;
 }
@@ -34,4 +35,17 @@ main div {
 
 main div img {
   width: 100px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  border: 2px solid black;
+  width: 99%;
+  padding: 20px;
+  margin: 5px;
+}
+
+footer p {
+  font-weight: 900;
 }
