@@ -6,6 +6,7 @@ const displayItems = async (i) => {
 
   const div = document.createElement('div');
   div.className = 'container';
+  div.id = i;
   const img = document.createElement('img');
   img.src = ans.image.medium;
   const span = document.createElement('span');
