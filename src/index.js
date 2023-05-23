@@ -1,5 +1,6 @@
 import './styles/style.css';
 import retrieveItems from './modules/display.js';
+import MovieStore from './modules/MovieStore';
 
 const displayItems = async (i) => {
   const ans = await retrieveItems(i);
@@ -33,3 +34,6 @@ while (start < end) {
   displayItems(start);
   start += 1;
 }
+
+const store = new MovieStore();
+console.log(store.getAll());
