@@ -23,7 +23,8 @@ header {
 main {
   display: grid;
   grid-template-columns: auto auto auto;
-  gap: 100px;
+  gap: 80px;
+  margin: 10px;
 }
 
 main div {
