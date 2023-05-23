@@ -14,10 +14,8 @@ header {
   justify-content: space-around;
 }
 
-#logo {
-  border: 1px solid black;
-  padding: 10px;
-  border-radius: 24px;
+header img {
+  width: 100px;
 }
 
 main {
@@ -48,4 +46,11 @@ footer {
 
 footer p {
   font-weight: 900;
+}
+
+a {
+  padding: 5px 10px;
+  text-decoration: none;
+  border: 3px solid black;
+  margin: 5px;
 }
