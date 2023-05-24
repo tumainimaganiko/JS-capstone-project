@@ -79,6 +79,7 @@ document.querySelector('body').addEventListener('click', (event) => {
     displayPopUp(id);
   } else if (event.target.classList.contains('popup-close-btn')) {
     const popupContainer = document.querySelector('.popup-container');
+    popupContainer.innerHTML = '';
     popupContainer.classList.remove('diplayBlock');
   }
 });
