@@ -1,4 +1,4 @@
-import retrieveItems from './display.js';
+import retrieveItems from './retrieveItems.js';
 import Movie from './movie.js';
 
 export default class MovieStore {
