@@ -96,7 +96,7 @@ footer p {
   border-radius: 5px;
 }
 
-.close-btn {
+.popup-close-btn {
   position: absolute;
   top: 10rem;
   right: 10px;
@@ -153,4 +153,8 @@ footer p {
   padding: 1rem;
   margin-left: 3rem;
   margin-right: 3rem;
+}
+
+.diplayBlock {
+  display: block;
 }

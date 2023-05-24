@@ -35,30 +35,34 @@ const displayItems = async (i) => {
 
 const displayPopUp = (id) => {
   const movie = store.getMovie(id);
-  alert(movie.name);
+  const popupContainer = document.querySelector('.popup-container');
   const popUpContent = document.createElement('div');
   popUpContent.innerHTML = `
-  <button class="close-btn">X</button>
+  <button class="popup-close-btn">X</button>
   <div class="movie-info">
     <div class="movie-image">
-      <img src="https://static.tvmaze.com/uploads/images/original_untouched/81/202627.jpg">
+      <img src="${movie.imgM}">
     </div>
     <div class="movie-details">
-      <h2 class="movie-title">Movie Title</h2>
+      <h2 class="movie-title">${movie.name}</h2>
       <div class="movie-details-flex">
         <div class="movie-details-left">
-          <p class="movie-language">Language: English</p>
-          <p class="movie-genres">Genres: Action, Adventure</p>
+          <p class="movie-language">Language: ${movie.language}</p>
+          <p class="movie-genres">Genres: ${movie.genres.join(', ')}</p>
         </div>
         <div class="movie-details-right">
-          <p class="movie-runtime">Runtime: 120 min</p>
-          <p class="movie-rating">Rating: 8.5</p>
+          <p class="movie-runtime">Runtime: ${movie.runtime} min</p>
+          <p class="movie-rating">Rating: ${movie.rating}</p>
         </div>
       </div>
     </div>
-    <p class="movie-summary">Lorem ipsum for sit amet, consectetur adipiscing elit. Nulla ut nisi at turpis viverra accumsan. Fusce euismod, quam eu vulputate porta, nibh dolor mattis quam, vel ornare lorem elit vel risus. Sed fringilla nisi ipsum, vel tristique nisl euismod nec.</p>
+    <p class="movie-summary">${movie.summary}</p>
   </div>
   `;
+
+  popUpContent.classList.add('popup-content');
+  popupContainer.appendChild(popUpContent);
+  popupContainer.classList.add('diplayBlock');
 };
 
 const end = 7;
@@ -68,9 +72,13 @@ while (start < end) {
   start += 1;
 }
 
-document.querySelector('main').addEventListener('click', (event) => {
+document.querySelector('body').addEventListener('click', (event) => {
+  // open popup window to the sepecific item.
   if (event.target.classList.contains('comment')) {
     const { id } = event.target.parentElement;
     displayPopUp(id);
+  } else if (event.target.classList.contains('popup-close-btn')) {
+    const popupContainer = document.querySelector('.popup-container');
+    popupContainer.classList.remove('diplayBlock');
   }
 });
