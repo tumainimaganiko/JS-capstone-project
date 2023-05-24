@@ -2,8 +2,8 @@ import './styles/style.css';
 import retrieveItems from './modules/display.js';
 import MovieStore from './modules/MovieStore';
 
+// Load movie in to the Store
 const store = new MovieStore();
-console.log(store.getAll());
 
 const displayItems = async (i) => {
   const ans = await retrieveItems(i);
