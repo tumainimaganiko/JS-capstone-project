@@ -63,6 +63,7 @@ const displayPopUp = (id) => {
   popUpContent.classList.add('popup-content');
   popupContainer.appendChild(popUpContent);
   popupContainer.classList.add('diplayBlock');
+  console.log(popUpContent);
 };
 
 const end = 7;

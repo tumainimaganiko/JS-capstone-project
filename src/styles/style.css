@@ -57,7 +57,7 @@ footer p {
 
 /* popup style */
 .popup-container {
-  display: none;
+  display: block;
   position: fixed;
   top: 0;
   left: 0;
@@ -71,9 +71,8 @@ footer p {
 
 .popup-content {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 50%;
+  margin-left: 25%;
   background-color: #140707;
   padding: 20px;
   border-radius: 5px;
@@ -97,9 +96,7 @@ footer p {
 }
 
 .popup-close-btn {
-  position: fixed;
-  margin-top: 2rem;
-  right: 1rem;
+  float: right;
   padding: 10px;
   border: none;
   background-color: transparent;
@@ -121,7 +118,7 @@ footer p {
 }
 
 .movie-image {
-  margin-top: 10rem;
+  margin-top: 8rem;
   margin-right: 20px;
 }
 
@@ -158,4 +155,36 @@ footer p {
 
 .diplayBlock {
   display: block;
+}
+
+.coment-lists {
+  text-align: left;
+  margin-top: 0.5rem;
+}
+
+.coment-item {
+  padding: 0.5rem;
+  background-color: #201515;
+}
+
+.add-comment {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.add-comment .input-name {
+  padding: 0.4rem;
+  width: fit-content;
+}
+
+.add-comment #user-comment {
+  padding: 0.4rem;
+  width: fit-content;
+}
+
+.add-comment .btn-comment {
+  padding: 0.4rem;
+  width: fit-content;
 }

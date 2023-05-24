@@ -4,6 +4,54 @@ import Movie from './movie.js';
 export default class MovieStore {
   Movies = [];
 
+  comment = [
+    {
+      itemId: 1,
+      username: 'Jane',
+      comment: 'Hello',
+    },
+    {
+      itemId: 1,
+      username: 'Jane',
+      comment: 'Hello',
+    },
+    {
+      itemId: 2,
+      username: 'Jane',
+      comment: 'Hello',
+    },
+    {
+      itemId: 3,
+      username: 'Jane',
+      comment: 'Hello',
+    },
+    {
+      itemId: 4,
+      username: 'Jane',
+      comment: 'Hello',
+    },
+    {
+      itemId: 5,
+      username: 'Jane',
+      comment: 'Hello',
+    },
+    {
+      itemId: 6,
+      username: 'Jane',
+      comment: 'Hello',
+    },
+    {
+      itemId: 7,
+      username: 'Jane',
+      comment: 'Hello',
+    },
+    {
+      itemId: 8,
+      username: 'Jane',
+      comment: 'Hello',
+    },
+  ]
+
   constructor() {
     let i = 1;
     while (i <= 10) {
@@ -13,6 +61,8 @@ export default class MovieStore {
   }
 
   getMovieFromAPI(id) {
+    let movie;
+
     retrieveItems(id)
       .then((m) => {
         const { name } = m;
@@ -24,7 +74,7 @@ export default class MovieStore {
         const rating = m.rating.average;
         let { summary } = m;
         summary = summary.slice(summary.indexOf('</b>') + 4, summary.indexOf('</p>'));
-        const movie = new Movie(id, name, imgM, imgL, language, genres, runtime, rating, summary);
+        movie = new Movie(id, name, imgM, imgL, language, genres, runtime, rating, summary);
         this.Movies.push(movie);
       });
   }
