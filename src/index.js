@@ -56,7 +56,7 @@ const displayPopUp = (id) => {
         </div>
       </div>
     </div>
-    <p class="movie-summary">${movie.summary}</p>
+    <p class="movie-summary"> <b>${movie.name}</b> ${movie.summary}</p>
   </div>
   `;
 

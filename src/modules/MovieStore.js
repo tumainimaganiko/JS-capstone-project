@@ -22,7 +22,8 @@ export default class MovieStore {
         const { genres } = m;
         const { runtime } = m;
         const rating = m.rating.average;
-        const { summary } = m;
+        let { summary } = m;
+        summary = summary.slice(summary.indexOf('</b>') + 4, summary.indexOf('</p>'));
         const movie = new Movie(id, name, imgM, imgL, language, genres, runtime, rating, summary);
         this.Movies.push(movie);
       });

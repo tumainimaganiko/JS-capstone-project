@@ -97,9 +97,9 @@ footer p {
 }
 
 .popup-close-btn {
-  position: absolute;
-  top: 10rem;
-  right: 10px;
+  position: fixed;
+  margin-top: 10rem;
+  right: 1rem;
   padding: 10px;
   border: none;
   background-color: transparent;
