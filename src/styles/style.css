@@ -71,7 +71,7 @@ footer p {
 
 .popup-content {
   position: absolute;
-  top: 53%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #140707de;
@@ -98,7 +98,7 @@ footer p {
 
 .popup-close-btn {
   position: fixed;
-  margin-top: 10rem;
+  margin-top: 2rem;
   right: 1rem;
   padding: 10px;
   border: none;
@@ -117,6 +117,7 @@ footer p {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  margin-top: -5rem;
 }
 
 .movie-image {
