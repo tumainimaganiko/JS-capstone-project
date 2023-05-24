@@ -46,10 +46,12 @@ footer p {
   font-weight: 900;
 }
 
-a {
+.comment,
+.reservation {
+  border: 2px solid black;
+  background-color: transparent;
   padding: 5px 10px;
   text-decoration: none;
-  border: 3px solid black;
   margin: 5px;
 }
 
@@ -63,56 +65,47 @@ a {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 9999;
+  color: white;
+  overflow: scroll;
 }
 
 .popup-content {
   position: absolute;
-  top: 50%;
+  top: 53%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #fff;
+  background-color: #140707de;
   padding: 20px;
   border-radius: 5px;
   text-align: center;
-  width: 80%;
-  max-width: 800px;
+  overflow: auto;
 }
 
 .popup-content h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
+  font-size: 2rem;
+  margin-top: 0.5rem;
 }
 
 .popup-content p {
-  font-size: 18px;
+  font-size: 1.2rem;
   line-height: 1.5;
-  margin-bottom: 10px;
 }
 
 .popup-content img {
-  max-width: 200px;
+  max-width: 20rem;
   border-radius: 5px;
-}
-
-.popup-btn {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
 }
 
 .close-btn {
   position: absolute;
-  top: 10px;
+  top: 10rem;
   right: 10px;
   padding: 10px;
   border: none;
   background-color: transparent;
   cursor: pointer;
   font-size: 24px;
-  color: #000;
+  color: white;
 }
 
 .close-btn:hover {
@@ -127,9 +120,37 @@ a {
 }
 
 .movie-image {
+  margin-top: 10rem;
   margin-right: 20px;
 }
 
 .movie-details {
+  display: block;
+  width: 100%;
+}
+
+.movie-details-flex {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+.movie-details-left {
+  width: 40%;
   text-align: left;
+}
+
+.movie-details-right {
+  width: 40%;
+  text-align: left;
+}
+
+.movie-info .movie-summary {
+  text-align: left;
+  padding: 1rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
 }
