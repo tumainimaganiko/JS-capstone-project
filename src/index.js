@@ -1,12 +1,20 @@
 import './styles/style.css';
-import retrieveItems from './modules/display.js';
-import MovieStore from './modules/MovieStore';
+import retrieveItems from './modules/retrieveItems.js';
+import MovieStore from './modules/MovieStore.js';
+import { likeBtn, displayLike } from './modules/like.js';
 
 // Load movie in to the Store
 const store = new MovieStore();
 
+const showLikes = async (element, i) => {
+  await likeBtn(i);
+  const message = await displayLike();
+  element.textContent = message[i].likes;
+};
+
 const displayItems = async (i) => {
   const ans = await retrieveItems(i);
+  const likeSpan = await displayLike();
 
   const div = document.createElement('div');
   div.className = 'container';
@@ -15,6 +23,11 @@ const displayItems = async (i) => {
   img.src = ans.image.medium;
   const span = document.createElement('span');
   span.innerHTML = `${ans.name}`;
+  const btn = document.createElement('button');
+  btn.classList.add('testing');
+  btn.innerHTML = '<i class="fa-solid fa-heart"></i>';
+  const like = document.createElement('span');
+  like.className = 'likes';
   const comment = document.createElement('button');
   comment.innerHTML = 'Comments';
   comment.href = '#';
@@ -24,10 +37,19 @@ const displayItems = async (i) => {
   reservations.classList.add('reservation');
   reservations.href = '';
 
+  // showLikes(like,i)
   div.appendChild(img);
   div.appendChild(span);
+  div.appendChild(btn);
+  div.appendChild(like);
   div.appendChild(comment);
   div.appendChild(reservations);
+
+  likeSpan.forEach((index) => {
+    if (index.item_id === `${i - 1}`) {
+      like.innerHTML = `${index.likes}`;
+    }
+  });
 
   const main = document.querySelector('main');
   main.appendChild(div);
@@ -66,13 +88,36 @@ const displayPopUp = (id) => {
 };
 
 const end = 7;
-let start = 1;
-while (start < end) {
-  displayItems(start);
-  start += 1;
-}
+const start = 1;
 
-document.querySelector('body').addEventListener('click', (event) => {
+const displayItemsRecursive = (start) => new Promise((resolve) => {
+  displayItems(start).then(() => {
+    if (start < end) {
+      resolve(displayItemsRecursive(start + 1));
+    } else {
+      resolve();
+    }
+  });
+});
+
+await displayItemsRecursive(start);
+
+const btn = document.querySelectorAll('.testing');
+btn.forEach((element, index) => {
+  element.addEventListener('click', async (e) => {
+    const span = e.currentTarget.parentNode.children[3];
+    await showLikes(span, index);
+  });
+});
+
+const heartLike = document.querySelectorAll('.fa-heart');
+heartLike.forEach((element) => {
+  element.addEventListener('click', () => {
+    element.style.color = 'red';
+  });
+});
+
+document.querySelector('body').addEventListener('click', async (event) => {
   // open popup window to the sepecific item.
   if (event.target.classList.contains('comment')) {
     const { id } = event.target.parentElement;
