@@ -13,6 +13,8 @@ export default class MovieStore {
   }
 
   getMovieFromAPI(id) {
+    let movie;
+
     retrieveItems(id)
       .then((m) => {
         const { name } = m;
@@ -24,7 +26,7 @@ export default class MovieStore {
         const rating = m.rating.average;
         let { summary } = m;
         summary = summary.slice(summary.indexOf('</b>') + 4, summary.indexOf('</p>'));
-        const movie = new Movie(id, name, imgM, imgL, language, genres, runtime, rating, summary);
+        movie = new Movie(id, name, imgM, imgL, language, genres, runtime, rating, summary);
         this.Movies.push(movie);
       });
   }
