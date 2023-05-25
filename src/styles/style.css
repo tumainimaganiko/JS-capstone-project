@@ -157,7 +157,7 @@ footer p {
   display: block;
 }
 
-.coment-lists {
+#comment-lists {
   text-align: left;
   margin-top: 0.5rem;
 }

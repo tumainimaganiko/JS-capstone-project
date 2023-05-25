@@ -34,10 +34,14 @@ const displayItems = async (i) => {
 };
 
 const diplayComments = (id) => {
-  const commentLists = document.querySelector('.coment-lists');
-  const p = document.createElcement('p');
-  p.innerHTML = `<p class="coment-item">03/11/20221 Alex: I'd love to buy it!${id}</p>`;
-  commentLists.appendChild(p);
+  const commentL = document.querySelector('#comment-lists');
+  const comments = store.getMovieComment(id);
+  comments.forEach((comment) => {
+    const p = document.createElement('p');
+    p.innerHTML = `${comment.creation_date} ${comment.username}: ${comment.comment}`;
+    p.classList.add('coment-item');
+    commentL.appendChild(p);
+  });
 };
 
 const displayPopUp = (id) => {
@@ -67,9 +71,7 @@ const displayPopUp = (id) => {
   </div>
   <div class="comment">
     <h2>Comments (2)</h2>
-    <div class="coment-lists">
-      <p class="coment-item">03/11/20221 Alex: I'd love to buy it!</p>
-      <p class="coment-item">03/12/20221 Mia: I love</p>
+    <div id="comment-lists">
     </div>
     <div class="add-comment">
       <input type="text" placeholder="your name" class="input-name">

@@ -5,51 +5,30 @@ export default class MovieStore {
   Movies = [];
 
   comment = [
-    {
-      itemId: 1,
-      username: 'Jane',
-      comment: 'Hello',
-    },
-    {
-      itemId: 1,
-      username: 'Jane',
-      comment: 'Hello',
-    },
-    {
-      itemId: 2,
-      username: 'Jane',
-      comment: 'Hello',
-    },
-    {
-      itemId: 3,
-      username: 'Jane',
-      comment: 'Hello',
-    },
-    {
-      itemId: 4,
-      username: 'Jane',
-      comment: 'Hello',
-    },
-    {
-      itemId: 5,
-      username: 'Jane',
-      comment: 'Hello',
-    },
-    {
-      itemId: 6,
-      username: 'Jane',
-      comment: 'Hello',
-    },
-    {
-      itemId: 7,
-      username: 'Jane',
-      comment: 'Hello',
-    },
-    {
-      itemId: 8,
-      username: 'Jane',
-      comment: 'Hello',
-    },
+    [
+      {
+        comment: 'This is nice!',
+        creation_date: '2021-01-10',
+        username: 'Paul',
+      },
+      {
+        comment: 'Great content!',
+        creation_date: '2021-02-10',
+        username: 'Mia',
+      },
+    ],
+    [
+      {
+        comment: 'This is nice!',
+        creation_date: '2021-01-10',
+        username: 'John',
+      },
+      {
+        comment: 'Great content!',
+        creation_date: '2021-02-10',
+        username: 'Jane',
+      },
+    ],
   ]
 
   constructor() {
@@ -88,6 +67,6 @@ export default class MovieStore {
   }
 
   getMovieComment(id) {
-    return this.comment.filter((comment) => comment.itemId === id);
+    return this.comment[id - 1];
   }
 }
