@@ -4,6 +4,8 @@ import Movie from './movie.js';
 export default class MovieStore {
   Movies = [];
 
+  comment = [];
+
   constructor() {
     let i = 1;
     while (i <= 10) {
@@ -11,8 +13,10 @@ export default class MovieStore {
       i += 1;
     }
   }
-npm 
+
   getMovieFromAPI(id) {
+    let movie;
+
     retrieveItems(id)
       .then((m) => {
         const { name } = m;
@@ -24,7 +28,7 @@ npm
         const rating = m.rating.average;
         let { summary } = m;
         summary = summary.slice(summary.indexOf('</b>') + 4, summary.indexOf('</p>'));
-        const movie = new Movie(id, name, imgM, imgL, language, genres, runtime, rating, summary);
+        movie = new Movie(id, name, imgM, imgL, language, genres, runtime, rating, summary);
         this.Movies.push(movie);
       });
   }
