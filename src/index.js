@@ -56,7 +56,7 @@ const displayItems = async (i) => {
   main.appendChild(div);
 };
 
-const updateComment = () => {
+const countComments = () => {
   const pc = document.querySelector('#No-Comment');
   const str = pc.innerHTML;
   const count = str.slice(str.indexOf('(') + 1, str.indexOf(')'));
@@ -69,7 +69,7 @@ const addComment = (comment) => {
   p.innerHTML = `${comment.creation_date} ${comment.username}: ${comment.cmt}`;
   p.classList.add('coment-item');
   commentL.appendChild(p);
-  updateComment(commentL.parentElement.parentElement.id);
+  countComments(commentL.parentElement.parentElement.id);
 };
 
 const diplayComments = (id) => {
