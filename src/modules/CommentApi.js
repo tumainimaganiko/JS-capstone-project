@@ -5,6 +5,7 @@ export const getComment = async (id) => {
 };
 
 export const postComment = async (data) => {
+  console.log(data);
   await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/wHcW9bBNiTZrCNkyx0vn/comments', {
     method: 'POST',
     body: JSON.stringify(data),

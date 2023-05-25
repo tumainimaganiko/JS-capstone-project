@@ -2,6 +2,8 @@ import './styles/style.css';
 import retrieveItems from './modules/retrieveItems.js';
 import MovieStore from './modules/MovieStore.js';
 import { likeBtn, displayLike } from './modules/like.js';
+import { getComment, postComment } from './modules/CommentApi.js';
+import Comment from './modules/comments';
 
 // Load movie in to the Store
 const store = new MovieStore();
@@ -55,10 +57,34 @@ const displayItems = async (i) => {
   main.appendChild(div);
 };
 
+const addComment = (comment) => {
+  const commentL = document.querySelector('#comment-lists');
+  const p = document.createElement('p');
+  p.innerHTML = `${comment.creation_date} ${comment.username}: ${comment.cmt}`;
+  p.classList.add('coment-item');
+  commentL.appendChild(p);
+};
+
+const diplayComments = (id) => {
+  const commentL = document.querySelector('#comment-lists');
+  getComment(id)
+    .then((comments) => {
+      if (comments.creation_date !== null) {
+        comments.forEach((comment) => {
+          const p = document.createElement('p');
+          p.innerHTML = `${comment.creation_date} ${comment.username}: ${comment.comment}`;
+          p.classList.add('coment-item');
+          commentL.appendChild(p);
+        });
+      }
+    });
+};
+
 const displayPopUp = (id) => {
   const movie = store.getMovie(id);
   const popupContainer = document.querySelector('.popup-container');
   const popUpContent = document.createElement('div');
+  popUpContent.id = `${id}`;
   popUpContent.innerHTML = `
   <button class="popup-close-btn">X</button>
   <div class="movie-info">
@@ -80,11 +106,22 @@ const displayPopUp = (id) => {
     </div>
     <p class="movie-summary"> <b>${movie.name}</b> ${movie.summary}</p>
   </div>
+  <div class="comment">
+    <h2>Comments (0)</h2>
+    <div id="comment-lists">
+    </div>
+    <div class="add-comment">
+      <input type="text" placeholder="your name" class="input-name">
+      <textarea name="comment" id="user-comment" cols="30" rows="10" placeholder="Your insights"></textarea>
+      <button class="btn-comment">Comment</button>
+    </div>
+  </div>
   `;
 
   popUpContent.classList.add('popup-content');
   popupContainer.appendChild(popUpContent);
   popupContainer.classList.add('diplayBlock');
+  diplayComments(id);
 };
 
 const end = 6;
@@ -126,5 +163,17 @@ document.querySelector('body').addEventListener('click', async (event) => {
     const popupContainer = document.querySelector('.popup-container');
     popupContainer.innerHTML = '';
     popupContainer.classList.remove('diplayBlock');
+  } else if (event.target.classList.contains('btn-comment')) {
+    event.preventDefault();
+    const { id } = event.target.parentElement.parentElement.parentElement;
+    const userName = event.target.previousElementSibling.previousElementSibling.value;
+    const comment = event.target.previousElementSibling.value;
+    const comObj = new Comment(id, userName, comment);
+    const date = new Date();
+    const current = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
+    addComment({ creation_date: current, username: userName, cmt: comment });
+    postComment(comObj);
+    event.target.previousElementSibling.previousElementSibling.value = '';
+    event.target.previousElementSibling.value = '';
   }
 });
