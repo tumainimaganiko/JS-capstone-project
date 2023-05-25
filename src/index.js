@@ -3,11 +3,10 @@ import retrieveItems from './modules/retrieveItems.js';
 import MovieStore from './modules/MovieStore.js';
 import { likeBtn, displayLike } from './modules/like.js';
 import { getComment, postComment } from './modules/CommentApi.js';
-import Comment from './modules/comments';
+import Comment from './modules/comments.js';
 
 // Load movie in to the Store
 const store = new MovieStore();
-
 const showLikes = async (element, i) => {
   await likeBtn(i);
   const message = await displayLike();
@@ -57,12 +56,20 @@ const displayItems = async (i) => {
   main.appendChild(div);
 };
 
+const updateComment = () => {
+  const pc = document.querySelector('#No-Comment');
+  const str = pc.innerHTML;
+  const count = str.slice(str.indexOf('(') + 1, str.indexOf(')'));
+  pc.innerHTML = `Comments (${Number(count) + 1})`;
+};
+
 const addComment = (comment) => {
   const commentL = document.querySelector('#comment-lists');
   const p = document.createElement('p');
   p.innerHTML = `${comment.creation_date} ${comment.username}: ${comment.cmt}`;
   p.classList.add('coment-item');
   commentL.appendChild(p);
+  updateComment(commentL.parentElement.parentElement.id);
 };
 
 const diplayComments = (id) => {
@@ -70,10 +77,13 @@ const diplayComments = (id) => {
   getComment(id)
     .then((comments) => {
       if (comments.creation_date !== null) {
+        const pc = document.querySelector('#No-Comment');
+        pc.innerHTML = `Comments (${comments.length})`;
         comments.forEach((comment) => {
           const p = document.createElement('p');
           p.innerHTML = `${comment.creation_date} ${comment.username}: ${comment.comment}`;
           p.classList.add('coment-item');
+          p.id = 'count';
           commentL.appendChild(p);
         });
       }
@@ -107,7 +117,7 @@ const displayPopUp = (id) => {
     <p class="movie-summary"> <b>${movie.name}</b> ${movie.summary}</p>
   </div>
   <div class="comment">
-    <h2>Comments (0)</h2>
+    <h2 id="No-Comment">Comments (0)</h2>
     <div id="comment-lists">
     </div>
     <div class="add-comment">

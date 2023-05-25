@@ -4,8 +4,6 @@ import Movie from './movie.js';
 export default class MovieStore {
   Movies = [];
 
-  comment = [];
-
   constructor() {
     let i = 1;
     while (i <= 10) {
