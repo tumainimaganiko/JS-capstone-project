@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 body {
@@ -9,50 +10,97 @@ body {
 }
 
 header {
-  margin-top: 20px;
+  top: 0;
+  right: 0;
+  left: 0;
+  position: fixed;
   display: flex;
-  justify-content: space-around;
+  justify-content: end;
+  gap: 3rem;
+  background-color: #292748;
+  color: white;
+  padding: 1rem;
 }
 
 header img {
-  width: 100px;
+  width: 4rem;
+  margin-right: auto;
+  margin-left: 1rem;
+  border-radius: 40px;
 }
 
 main {
   display: grid;
   grid-template-columns: auto auto auto;
   gap: 80px;
-  margin: 10px;
+  margin-top: 10rem;
+  padding: 3rem;
 }
 
 main div {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.25) 1px 54px 55px, rgba(0, 0, 0, 0.12) 1px -12px 30px, rgba(0, 0, 0, 0.12) 1px 4px 6px, rgba(0, 0, 0, 0.17) 1px 12px 13px, rgba(0, 0, 0, 0.09) 1px -3px 5px;
+  gap: 0.5rem;
+  padding: 1rem;
 }
 
 main div img {
-  width: 100px;
+  width: 100%;
+  margin: auto;
+  margin-bottom: 0.6rem;
+}
+
+main div span {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+main div button > i {
+  float: right;
+  margin-top: -2.1rem;
+  margin-right: 1rem;
+}
+
+main div span.likes {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: 1rem;
+  margin-top: 1rem;
+}
+
+main div span.likes::after {
+  content: ' likes';
+  font-size: 0.8rem;
 }
 
 footer {
-  border: 2px solid black;
-  width: 99%;
-  padding: 20px;
-  margin: 5px;
+  padding: 0.5rem;
+  opacity: 0.9;
+  text-align: center;
 }
 
 footer p {
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .comment,
 .reservation {
-  border: 2px solid black;
-  background-color: transparent;
-  padding: 5px 10px;
+  border: none;
+  padding: 1rem;
   text-decoration: none;
-  margin: 5px;
+  margin: 0.5rem;
+  color: white;
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.comment {
+  background-color: #4caf50;
+}
+
+.reservation {
+  background-color: #008cba;
 }
 
 /* popup style */

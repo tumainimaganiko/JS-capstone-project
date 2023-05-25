@@ -87,7 +87,7 @@ const displayPopUp = (id) => {
   popupContainer.classList.add('diplayBlock');
 };
 
-const end = 7;
+const end = 6;
 const start = 1;
 
 const displayItemsRecursive = (start) => new Promise((resolve) => {
