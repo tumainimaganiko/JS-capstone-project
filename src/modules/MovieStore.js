@@ -11,7 +11,7 @@ export default class MovieStore {
       i += 1;
     }
   }
-
+npm 
   getMovieFromAPI(id) {
     retrieveItems(id)
       .then((m) => {
