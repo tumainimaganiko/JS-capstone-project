@@ -86,4 +86,8 @@ export default class MovieStore {
   getMovie(id) {
     return this.Movies[id - 1];
   }
+
+  getMovieComment(id) {
+    return this.comment.filter((comment) => comment.itemId === id);
+  }
 }

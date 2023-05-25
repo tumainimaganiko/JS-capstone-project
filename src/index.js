@@ -33,6 +33,13 @@ const displayItems = async (i) => {
   main.appendChild(div);
 };
 
+const diplayComments = (id) => {
+  const commentLists = document.querySelector('.coment-lists');
+  const p = document.createElcement('p');
+  p.innerHTML = `<p class="coment-item">03/11/20221 Alex: I'd love to buy it!${id}</p>`;
+  commentLists.appendChild(p);
+};
+
 const displayPopUp = (id) => {
   const movie = store.getMovie(id);
   const popupContainer = document.querySelector('.popup-container');
@@ -58,12 +65,24 @@ const displayPopUp = (id) => {
     </div>
     <p class="movie-summary"> <b>${movie.name}</b> ${movie.summary}</p>
   </div>
+  <div class="comment">
+    <h2>Comments (2)</h2>
+    <div class="coment-lists">
+      <p class="coment-item">03/11/20221 Alex: I'd love to buy it!</p>
+      <p class="coment-item">03/12/20221 Mia: I love</p>
+    </div>
+    <div class="add-comment">
+      <input type="text" placeholder="your name" class="input-name">
+      <textarea name="comment" id="user-comment" cols="30" rows="10" placeholder="Your insights"></textarea>
+      <button class="btn-comment">Comment</button>
+    </div>
+  </div>
   `;
 
   popUpContent.classList.add('popup-content');
   popupContainer.appendChild(popUpContent);
   popupContainer.classList.add('diplayBlock');
-  console.log(popUpContent);
+  diplayComments(1);
 };
 
 const end = 7;
