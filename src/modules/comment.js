@@ -1,7 +1,6 @@
 export default class Comment {
-  constructor(date, itemId, username, comment) {
-    this.date = date;
-    this.item_id = itemId;
+  constructor(idtemId, username, comment) {
+    this.item_id = idtemId;
     this.username = username;
     this.comment = comment;
   }

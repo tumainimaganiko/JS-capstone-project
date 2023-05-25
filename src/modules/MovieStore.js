@@ -4,32 +4,7 @@ import Movie from './movie.js';
 export default class MovieStore {
   Movies = [];
 
-  comment = [
-    [
-      {
-        comment: 'This is nice!',
-        creation_date: '2021-01-10',
-        username: 'Paul',
-      },
-      {
-        comment: 'Great content!',
-        creation_date: '2021-02-10',
-        username: 'Mia',
-      },
-    ],
-    [
-      {
-        comment: 'This is nice!',
-        creation_date: '2021-01-10',
-        username: 'John',
-      },
-      {
-        comment: 'Great content!',
-        creation_date: '2021-02-10',
-        username: 'Jane',
-      },
-    ],
-  ]
+  comment = [];
 
   constructor() {
     let i = 1;
@@ -64,9 +39,5 @@ export default class MovieStore {
 
   getMovie(id) {
     return this.Movies[id - 1];
-  }
-
-  getMovieComment(id) {
-    return this.comment[id - 1];
   }
 }
