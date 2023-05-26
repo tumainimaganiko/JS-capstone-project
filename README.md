@@ -78,6 +78,7 @@ This Javasrcipt Capstone Project focuses on developing movie APIs that allow us 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
 - [Live Demo Link](https://tumainimaganiko.github.io/JS-capstone-project/dist/)
+- [Live Demo video](https://drive.google.com/file/d/1XEptd7XzfC6ex0LSW3k2tXtJQ8Uzu3n0/view?usp=sharing)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 <!-- GETTING STARTED -->
@@ -150,8 +151,7 @@ Coming soon
 👤 Paul Tesfay
 
 - GitHub: [@githubhandle](https://github.com/Paul-tes)
-- Twitter: [@twitterhandle](https://twitter.com/Chief2maini)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/tumaini-maganiko-991b30262/)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/paul-tesfaye-687820215/)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
