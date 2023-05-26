@@ -37,8 +37,7 @@
 <!-- PROJECT DESCRIPTION -->
 
 # 📖  MOVIE GALLERY <a name="about-project"></a>
-
->This is my second microverse project I have built it with HTML and CSS.
+This Javasrcipt Capstone Project focuses on developing movie APIs that allow us watch movies content via apis and allow to leave likes and comments on them. built with HTML, CSS, and Java code.
 
 ## 🛠 Built With <a name="built-with"></a>
 1. HTML
@@ -63,7 +62,6 @@
 <!-- Features -->
 
 ### Key Features <a name="key-features"></a>
-
 
 - A User can Like a movie
 - A User can comment on any movie
