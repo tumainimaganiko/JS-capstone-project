@@ -1,7 +1,7 @@
 import './styles/style.css';
 import { fetchComments, postComment } from './modules/CommentApi.js';
 import { addLike, getLikes } from './modules/like.js';
-import { fetchAllMovies, fetchMovie } from './modules/movieApi';
+import { fetchAllMovies, fetchMovie } from './modules/movieApi.js';
 
 const renderMovies = (movies, likes) => {
   const moviesContainer = document.querySelector('.movies-container');
@@ -97,7 +97,6 @@ const displayPopUp = async (id) => {
     </div>
   </div>
   `;
-
   popUpContent.classList.add('popup-content');
   popupContainer.appendChild(popUpContent);
   popupContainer.classList.add('diplayBlock');
@@ -105,9 +104,7 @@ const displayPopUp = async (id) => {
   document.querySelector('.btn-comment').addEventListener('click', () => {
     const username = document.querySelector('.input-name').value;
     const comment = document.querySelector('#user-comment').value;
-    if (username === '' || comment === '') {
-      alert('Please fill in your name and comment');
-    } else {
+    if (username !== '' || comment !== '') {
       addComment({ id, username, comment });
     }
   });
@@ -140,7 +137,7 @@ document.querySelector('main.movies-container').addEventListener('click', (event
     const { id } = event.target.parentElement.parentElement;
     addLike(`${id - 1}`);
     const like = event.target.parentElement.nextElementSibling;
-    let noLike = event.target.parentElement.nextElementSibling.innerHTML
+    let noLike = event.target.parentElement.nextElementSibling.innerHTML;
     noLike = `${Number(noLike) + 1}`;
     like.innerHTML = noLike;
   }
