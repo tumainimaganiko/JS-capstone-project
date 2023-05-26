@@ -2,10 +2,10 @@ import './styles/style.css';
 import { fetchComments, postComment } from './modules/CommentApi.js';
 import { addLike, getLikes } from './modules/like.js';
 import { fetchAllMovies, fetchMovie } from './modules/movieApi.js';
+import { countComments, countMovies } from './modules/Counters.js';
 
 const renderMovies = (movies, likes) => {
   const moviesContainer = document.querySelector('.movies-container');
-  document.querySelector('.movies-count').textContent = movies.length;
   movies.forEach(({ id, name, image }, index) => {
     const movieCard = `
       <div class="container" id=${id}>
@@ -19,15 +19,12 @@ const renderMovies = (movies, likes) => {
       <button class="reservation">Reservations</button></div>`;
     moviesContainer.innerHTML += movieCard;
   });
-};
-
-const countMovie = () => {
-  const moviesCount = document.querySelectorAll('.container').length;
-  return moviesCount;
+  document.querySelector('.movies-count').textContent = countMovies();
 };
 
 const diplayComments = (comments) => {
   const commentL = document.querySelector('#comment-lists');
+  const commentCountsEl = document.querySelector('.comments-count');
   comments.forEach((comment) => {
     const p = document.createElement('p');
     p.innerHTML = `${comment.creation_date} ${comment.username}: ${comment.comment}`;
@@ -35,6 +32,7 @@ const diplayComments = (comments) => {
     p.id = 'count';
     commentL.appendChild(p);
   });
+  commentCountsEl.textContent = `${countComments()}`;
 };
 
 const closePopUp = () => {
@@ -92,7 +90,7 @@ const displayPopUp = async (id) => {
 }</p>
   </div>
   <div class="comment">
-    <h2 id="No-Comment">Comments (${comments.length})</h2>
+    <h2 id="No-Comment">Comments (<span class="comments-count"> </span>)</h2>
     <div id="comment-lists">
     </div>
     <div class="add-comment">
@@ -122,7 +120,6 @@ window.onload = async () => {
   const movies = (await fetchAllMovies()).splice(0, 9);
   const likes = await getLikes();
   renderMovies(movies, likes);
-  countMovie();
   const commentBtns = document.querySelectorAll('.comment');
   commentBtns.forEach((btn) => {
     btn.addEventListener('click', async () => {
