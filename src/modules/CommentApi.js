@@ -1,4 +1,4 @@
-export const getComment = async (id) => {
+export const fetchComments = async (id) => {
   const submit = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/wHcW9bBNiTZrCNkyx0vn/comments?item_id=${id}`);
   const response = await submit.json();
   return response;

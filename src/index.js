@@ -1,97 +1,66 @@
 import './styles/style.css';
-import retrieveItems from './modules/retrieveItems.js';
-import MovieStore from './modules/MovieStore.js';
-import { likeBtn, displayLike } from './modules/like.js';
-import { getComment, postComment } from './modules/CommentApi.js';
-import Comment from './modules/comments.js';
+import { fetchComments, postComment } from './modules/CommentApi.js';
+import { addLike, getLikes } from './modules/like.js';
+import { fetchAllMovies, fetchMovie } from './modules/movieApi';
 
-// Load movie in to the Store
-const store = new MovieStore();
-const showLikes = async (element, i) => {
-  await likeBtn(i);
-  const message = await displayLike();
-  element.textContent = message[i].likes;
-};
-
-const displayItems = async (i) => {
-  const ans = await retrieveItems(i);
-  const likeSpan = await displayLike();
-
-  const div = document.createElement('div');
-  div.className = 'container';
-  div.id = i;
-  const img = document.createElement('img');
-  img.src = ans.image.medium;
-  const span = document.createElement('span');
-  span.innerHTML = `${ans.name}`;
-  const btn = document.createElement('button');
-  btn.classList.add('testing');
-  btn.innerHTML = '<i class="fa-solid fa-heart"></i>';
-  const like = document.createElement('span');
-  like.className = 'likes';
-  const comment = document.createElement('button');
-  comment.innerHTML = 'Comments';
-  comment.href = '#';
-  comment.classList.add('comment');
-  const reservations = document.createElement('button');
-  reservations.innerHTML = 'Reservations';
-  reservations.classList.add('reservation');
-  reservations.href = '';
-
-  // showLikes(like,i)
-  div.appendChild(img);
-  div.appendChild(span);
-  div.appendChild(btn);
-  div.appendChild(like);
-  div.appendChild(comment);
-  div.appendChild(reservations);
-
-  likeSpan.forEach((index) => {
-    if (index.item_id === `${i - 1}`) {
-      like.innerHTML = `${index.likes}`;
-    }
+const renderMovies = (movies, likes) => {
+  console.log(likes);
+  const moviesContainer = document.querySelector('.movies-container');
+  document.querySelector('.movies-count').textContent = movies.length;
+  movies.forEach(({ id, name, image }, index) => {
+    const movieCard = `
+      <div class="container" id=${id}>
+      <img src=${image.medium}>
+      <span>${name}</span>
+      <button class="testing">
+        <i class="fa-solid fa-heart"></i>
+      </button>
+      <span class="likes">${likes[index].likes}</span>
+      <button id=${id} class="comment">Comments</button>
+      <button class="reservation">Reservations</button></div>`;
+    moviesContainer.innerHTML += movieCard;
   });
-
-  const main = document.querySelector('main');
-  main.appendChild(div);
 };
 
-const countComments = () => {
+const diplayComments = (comments) => {
+  const commentL = document.querySelector('#comment-lists');
+  comments.forEach((comment) => {
+    const p = document.createElement('p');
+    p.innerHTML = `${comment.creation_date} ${comment.username}: ${comment.comment}`;
+    p.classList.add('coment-item');
+    p.id = 'count';
+    commentL.appendChild(p);
+  });
+};
+
+const closePopUp = () => {
+  const popupContainer = document.querySelector('.popup-container');
+  popupContainer.classList.remove('diplayBlock');
+  popupContainer.innerHTML = '';
+};
+
+const updateComment = () => {
   const pc = document.querySelector('#No-Comment');
   const str = pc.innerHTML;
   const count = str.slice(str.indexOf('(') + 1, str.indexOf(')'));
   pc.innerHTML = `Comments (${Number(count) + 1})`;
 };
 
-const addComment = (comment) => {
+const addComment = ({ id, username, comment }) => {
+  const date = new Date();
+  const currentDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
   const commentL = document.querySelector('#comment-lists');
   const p = document.createElement('p');
-  p.innerHTML = `${comment.creation_date} ${comment.username}: ${comment.cmt}`;
+  p.innerHTML = `${currentDate} ${username}: ${comment}`;
   p.classList.add('coment-item');
   commentL.appendChild(p);
-  countComments(commentL.parentElement.parentElement.id);
+  updateComment(commentL.parentElement.parentElement.id);
+  postComment({ comment, item_id: id, username });
 };
 
-const diplayComments = (id) => {
-  const commentL = document.querySelector('#comment-lists');
-  getComment(id)
-    .then((comments) => {
-      if (comments.creation_date !== null) {
-        const pc = document.querySelector('#No-Comment');
-        pc.innerHTML = `Comments (${comments.length})`;
-        comments.forEach((comment) => {
-          const p = document.createElement('p');
-          p.innerHTML = `${comment.creation_date} ${comment.username}: ${comment.comment}`;
-          p.classList.add('coment-item');
-          p.id = 'count';
-          commentL.appendChild(p);
-        });
-      }
-    });
-};
-
-const displayPopUp = (id) => {
-  const movie = store.getMovie(id);
+const displayPopUp = async (id) => {
+  const movieDetail = await fetchMovie(id);
+  const comments = await fetchComments(id);
   const popupContainer = document.querySelector('.popup-container');
   const popUpContent = document.createElement('div');
   popUpContent.id = `${id}`;
@@ -99,25 +68,27 @@ const displayPopUp = (id) => {
   <button class="popup-close-btn">X</button>
   <div class="movie-info">
     <div class="movie-image">
-      <img src="${movie.imgM}">
+      <img src="${movieDetail.image.original}">
     </div>
     <div class="movie-details">
-      <h2 class="movie-title">${movie.name}</h2>
+      <h2 class="movie-title">${movieDetail.name}</h2>
       <div class="movie-details-flex">
         <div class="movie-details-left">
-          <p class="movie-language">Language: ${movie.language}</p>
-          <p class="movie-genres">Genres: ${movie.genres.join(', ')}</p>
+          <p class="movie-language">Language: ${movieDetail.language}</p>
+          <p class="movie-genres">Genres: ${movieDetail.genres.join(', ')}</p>
         </div>
         <div class="movie-details-right">
-          <p class="movie-runtime">Runtime: ${movie.runtime} min</p>
-          <p class="movie-rating">Rating: ${movie.rating}</p>
+          <p class="movie-runtime">Runtime: ${movieDetail.runtime} min</p>
+          <p class="movie-rating">Rating: ${movieDetail.rating}</p>
         </div>
       </div>
     </div>
-    <p class="movie-summary"> <b>${movie.name}</b> ${movie.summary}</p>
+    <p class="movie-summary"> <b>${movieDetail.name}</b> ${
+  movieDetail.summary
+}</p>
   </div>
   <div class="comment">
-    <h2 id="No-Comment">Comments (0)</h2>
+    <h2 id="No-Comment">Comments (${comments.length})</h2>
     <div id="comment-lists">
     </div>
     <div class="add-comment">
@@ -131,33 +102,33 @@ const displayPopUp = (id) => {
   popUpContent.classList.add('popup-content');
   popupContainer.appendChild(popUpContent);
   popupContainer.classList.add('diplayBlock');
-  diplayComments(id);
-};
-
-const end = 6;
-const start = 1;
-
-const displayItemsRecursive = (start) => new Promise((resolve) => {
-  displayItems(start).then(() => {
-    if (start < end) {
-      resolve(displayItemsRecursive(start + 1));
+  document.querySelector('.popup-close-btn').addEventListener('click', closePopUp);
+  document.querySelector('.btn-comment').addEventListener('click', () => {
+    const username = document.querySelector('.input-name').value;
+    const comment = document.querySelector('#user-comment').value;
+    if (username === '' || comment === '') {
+      alert('Please fill in your name and comment');
     } else {
-      resolve();
+      addComment({ id, username, comment });
     }
   });
-});
+  diplayComments(comments);
+};
 
-await displayItemsRecursive(start);
-
-const btn = document.querySelectorAll('.testing');
-btn.forEach((element, index) => {
-  element.addEventListener('click', async (e) => {
-    const span = e.currentTarget.parentNode.children[3];
-    await showLikes(span, index);
+window.onload = async () => {
+  const movies = (await fetchAllMovies()).splice(0, 9);
+  const likes = await getLikes();
+  renderMovies(movies, likes);
+  const commentBtns = document.querySelectorAll('.comment');
+  commentBtns.forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const movieID = btn.getAttribute('id');
+      displayPopUp(movieID);
+    });
   });
-});
+};
 
-const heartLike = document.querySelectorAll('.fa-heart');
+const heartLike = document.querySelectorAll('i.fa-heart');
 heartLike.forEach((element) => {
   element.addEventListener('click', () => {
     element.style.color = 'red';
