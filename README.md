@@ -37,8 +37,7 @@
 <!-- PROJECT DESCRIPTION -->
 
 # 📖  MOVIE GALLERY <a name="about-project"></a>
-
->This is my second microverse project I have built it with HTML and CSS.
+This Javasrcipt Capstone Project focuses on developing movie APIs that allow us watch movies content via apis and allow to leave likes and comments on them. built with HTML, CSS, and Java code.
 
 ## 🛠 Built With <a name="built-with"></a>
 1. HTML
@@ -64,7 +63,6 @@
 
 ### Key Features <a name="key-features"></a>
 
-
 - A User can Like a movie
 - A User can comment on any movie
 
@@ -80,6 +78,7 @@
 ## 🚀 Live Demo <a name="live-demo"></a>
 
 - [Live Demo Link](https://tumainimaganiko.github.io/JS-capstone-project/dist/)
+- [Live Demo video](https://drive.google.com/file/d/1XEptd7XzfC6ex0LSW3k2tXtJQ8Uzu3n0/view?usp=sharing)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 <!-- GETTING STARTED -->
@@ -152,8 +151,7 @@ Coming soon
 👤 Paul Tesfay
 
 - GitHub: [@githubhandle](https://github.com/Paul-tes)
-- Twitter: [@twitterhandle](https://twitter.com/Chief2maini)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/tumaini-maganiko-991b30262/)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/paul-tesfaye-687820215/)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
