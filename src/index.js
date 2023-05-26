@@ -1,10 +1,9 @@
 import './styles/style.css';
 import { fetchComments, postComment } from './modules/CommentApi.js';
 import { addLike, getLikes } from './modules/like.js';
-import { fetchAllMovies, fetchMovie } from './modules/movieApi';
+import { fetchAllMovies, fetchMovie } from './modules/movieApi.js';
 
 const renderMovies = (movies, likes) => {
-  console.log(likes);
   const moviesContainer = document.querySelector('.movies-container');
   document.querySelector('.movies-count').textContent = movies.length;
   movies.forEach(({ id, name, image }, index) => {
@@ -98,7 +97,6 @@ const displayPopUp = async (id) => {
     </div>
   </div>
   `;
-
   popUpContent.classList.add('popup-content');
   popupContainer.appendChild(popUpContent);
   popupContainer.classList.add('diplayBlock');
@@ -106,9 +104,7 @@ const displayPopUp = async (id) => {
   document.querySelector('.btn-comment').addEventListener('click', () => {
     const username = document.querySelector('.input-name').value;
     const comment = document.querySelector('#user-comment').value;
-    if (username === '' || comment === '') {
-      alert('Please fill in your name and comment');
-    } else {
+    if (username !== '' || comment !== '') {
       addComment({ id, username, comment });
     }
   });
@@ -128,11 +124,23 @@ window.onload = async () => {
   });
 };
 
-const heartLike = document.querySelectorAll('i.fa-heart');
-heartLike.forEach((element) => {
-  element.addEventListener('click', () => {
-    element.style.color = 'red';
-  });
+document.querySelector('main.movies-container').addEventListener('click', (event) => {
+  if (event.target.classList.contains('fa-heart')) {
+    // stylings of hurt
+    event.target.classList.add('color-change');
+    event.target.style.color = 'red';
+    event.target.style.fontSize = '2rem';
+    setTimeout(() => {
+      event.target.style.color = 'white';
+      event.target.style.fontSize = '1.5rem';
+    }, 500);
+    const { id } = event.target.parentElement.parentElement;
+    addLike(`${id - 1}`);
+    const like = event.target.parentElement.nextElementSibling;
+    let noLike = event.target.parentElement.nextElementSibling.innerHTML;
+    noLike = `${Number(noLike) + 1}`;
+    like.innerHTML = noLike;
+  }
 });
 
 document.querySelector('body').addEventListener('click', async (event) => {
