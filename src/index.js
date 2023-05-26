@@ -2,7 +2,7 @@ import './styles/style.css';
 import { fetchComments, postComment } from './modules/CommentApi.js';
 import { addLike, getLikes } from './modules/like.js';
 import { fetchAllMovies, fetchMovie } from './modules/movieApi.js';
-import { countComments, countMovies } from './modules/Counters';
+import { countComments, countMovies } from './modules/Counters.js';
 
 const renderMovies = (movies, likes) => {
   const moviesContainer = document.querySelector('.movies-container');
