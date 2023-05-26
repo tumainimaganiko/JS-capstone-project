@@ -21,6 +21,11 @@ const renderMovies = (movies, likes) => {
   });
 };
 
+const countMovie = () => {
+  const moviesCount = document.querySelectorAll('.container').length;
+  return moviesCount;
+};
+
 const diplayComments = (comments) => {
   const commentL = document.querySelector('#comment-lists');
   comments.forEach((comment) => {
@@ -102,10 +107,12 @@ const displayPopUp = async (id) => {
   popupContainer.classList.add('diplayBlock');
   document.querySelector('.popup-close-btn').addEventListener('click', closePopUp);
   document.querySelector('.btn-comment').addEventListener('click', () => {
-    const username = document.querySelector('.input-name').value;
-    const comment = document.querySelector('#user-comment').value;
-    if (username !== '' || comment !== '') {
-      addComment({ id, username, comment });
+    const username = document.querySelector('.input-name');
+    const comment = document.querySelector('#user-comment');
+    if (username.value !== '' || comment.value !== '') {
+      addComment({ id, username: username.value, comment: comment.value });
+      username.value = '';
+      comment.value = '';
     }
   });
   diplayComments(comments);
@@ -115,6 +122,7 @@ window.onload = async () => {
   const movies = (await fetchAllMovies()).splice(0, 9);
   const likes = await getLikes();
   renderMovies(movies, likes);
+  countMovie();
   const commentBtns = document.querySelectorAll('.comment');
   commentBtns.forEach((btn) => {
     btn.addEventListener('click', async () => {
@@ -140,29 +148,5 @@ document.querySelector('main.movies-container').addEventListener('click', (event
     let noLike = event.target.parentElement.nextElementSibling.innerHTML;
     noLike = `${Number(noLike) + 1}`;
     like.innerHTML = noLike;
-  }
-});
-
-document.querySelector('body').addEventListener('click', async (event) => {
-  // open popup window to the sepecific item.
-  if (event.target.classList.contains('comment')) {
-    const { id } = event.target.parentElement;
-    displayPopUp(id);
-  } else if (event.target.classList.contains('popup-close-btn')) {
-    const popupContainer = document.querySelector('.popup-container');
-    popupContainer.innerHTML = '';
-    popupContainer.classList.remove('diplayBlock');
-  } else if (event.target.classList.contains('btn-comment')) {
-    event.preventDefault();
-    const { id } = event.target.parentElement.parentElement.parentElement;
-    const userName = event.target.previousElementSibling.previousElementSibling.value;
-    const comment = event.target.previousElementSibling.value;
-    const comObj = new Comment(id, userName, comment);
-    const date = new Date();
-    const current = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
-    addComment({ creation_date: current, username: userName, cmt: comment });
-    postComment(comObj);
-    event.target.previousElementSibling.previousElementSibling.value = '';
-    event.target.previousElementSibling.value = '';
   }
 });
