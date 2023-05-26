@@ -4,7 +4,6 @@ import { addLike, getLikes } from './modules/like.js';
 import { fetchAllMovies, fetchMovie } from './modules/movieApi';
 
 const renderMovies = (movies, likes) => {
-  console.log(likes);
   const moviesContainer = document.querySelector('.movies-container');
   document.querySelector('.movies-count').textContent = movies.length;
   movies.forEach(({ id, name, image }, index) => {
@@ -128,11 +127,24 @@ window.onload = async () => {
   });
 };
 
-const heartLike = document.querySelectorAll('i.fa-heart');
-heartLike.forEach((element) => {
-  element.addEventListener('click', () => {
-    element.style.color = 'red';
-  });
+document.querySelector('main.movies-container').addEventListener('click', (event) => {
+  if (event.target.classList.contains('fa-heart')) {
+    // stylings of hurt
+    event.target.classList.add('color-change');
+    event.target.style.color = 'red';
+    event.target.style.fontSize = '2rem';
+    setTimeout(() => {
+      event.target.style.color = 'white';
+      event.target.style.fontSize = '1.5rem';
+    }, 500);
+    const { id } = event.target.parentElement.parentElement;
+    addLike(`${id - 1}`);
+    const like = event.target.parentElement.nextElementSibling;
+    let noLike = event.target.parentElement.nextElementSibling.innerHTML
+    noLike = `${Number(noLike) + 1}`;
+    like.innerHTML = noLike;
+    console.log();
+  }
 });
 
 document.querySelector('body').addEventListener('click', async (event) => {

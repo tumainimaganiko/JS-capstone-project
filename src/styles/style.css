@@ -59,7 +59,11 @@ main div span {
 main div button > i {
   float: right;
   margin-top: -2.1rem;
-  margin-right: 1rem;
+}
+
+.color-change {
+  color: red;
+  transition: color 1s ease;
 }
 
 main div span.likes {
@@ -245,4 +249,9 @@ button.comment {
 .fa-heart {
   font-size: 24px;
   color: white;
+}
+
+main div#2 {
+  border: 1px solid red;
+  background-color: #140707 !important;
 }
