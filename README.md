@@ -18,6 +18,7 @@
   - [🛠 Built With ](#-built-with-)
     - [Tech Stack ](#tech-stack-)
     - [Key Features ](#key-features-)
+  - [🚀 Project Screenshot ](#-project-screenshot-)
   - [🚀 Live Demo ](#-live-demo-)
   - [💻 Getting Started ](#-getting-started-)
     - [Prerequisites](#prerequisites)
@@ -69,11 +70,16 @@
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## 🚀 Project Screenshot <a name="live-demo"></a>
+
+![home page](/src/images/homepage.png)
+
+![home page](/src/images/comment.png)
 <!-- LIVE DEMO -->
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link](https://tumainimaganiko.github.io/To-Do-Lists/dist/)
+- [Live Demo Link](https://tumainimaganiko.github.io/JS-capstone-project/dist/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 <!-- GETTING STARTED -->
