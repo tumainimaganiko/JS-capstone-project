@@ -143,7 +143,6 @@ document.querySelector('main.movies-container').addEventListener('click', (event
     let noLike = event.target.parentElement.nextElementSibling.innerHTML
     noLike = `${Number(noLike) + 1}`;
     like.innerHTML = noLike;
-    console.log();
   }
 });
 
