@@ -81,7 +81,7 @@ const displayPopUp = async (id) => {
         </div>
         <div class="movie-details-right">
           <p class="movie-runtime">Runtime: ${movieDetail.runtime} min</p>
-          <p class="movie-rating">Rating: ${movieDetail.rating}</p>
+          <p class="movie-rating">Rating: ${movieDetail.rating.average}</p>
         </div>
       </div>
     </div>
